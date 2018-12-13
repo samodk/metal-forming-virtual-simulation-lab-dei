@@ -33,9 +33,7 @@ function init() {
   disableDraggingFor(document.getElementById("draggingDisabled"));
 } 
 function disableDraggingFor(element) {
-  // this works for FireFox and WebKit in future according to http://help.dottoro.com/lhqsqbtn.php
   element.draggable = false;
-  // this works for older web layout engines
   element.onmousedown = function(event) {
                 event.preventDefault();
                 return false;
@@ -49,8 +47,6 @@ function disableDraggingFor(element) {
 <div id="header">
 <ul class="dropdown dropdown-horizontal">
 <?php
-//error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
-//error_reporting(E_ALL ^ E_WARNING ^ E_DEPRECATED);
 include("mainmenu.php");
 ?>
 </ul></div>
@@ -80,28 +76,9 @@ The <b style="color:#0000FF; font-size:16px; text-transform:uppercase;">
 objective of Metal Forming Virtual Simulation Lab</b> is to make students understand the various fundamental metal forming processes and to recognise the effect of various process parameters with the help of computer
 numerical simulations. In this lab animations of upsetting process, extrusion process, multi-step forging processes, closed die forging, rolling process, sheet metal processes and intricate phenomena during these processes are incorporated to make the student appreciate and develop better understanding of the fundamental concepts.
 </td><td>
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/
-cabs/flash/swflash.cab#version=6,0,40,0" height="280" width="320" id="mymoviename"> 
-<param name="movie"  value="Slide.swf" />
-<param name="wmode" value="transparent"/>
-<param name="quality" value="high" />
-<param name="bgcolor" value="#ffffff" />
-<embed src="Slide.swf" quality="high" wmode="transparent" bgcolor="#ffffff" height="280" width="320"
-name="mymoviename" align="" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"> 
-</embed></object>
-<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/
-cabs/flash/swflash.cab#version=6,0,40,0" height="180" width="320" id="mymoviename"> 
-<param name="movie"  value="Home.swf" />
-<param name="quality" value="high" />
-<param name="bgcolor" value="#ffffff" /> 
-<embed src="Home.swf" quality="high" bgcolor="#ffffff" height="180" width="320"
-name="mymoviename" align="" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"> 
-</embed></object> 
-<center style="Background:#FF00FF; color:#FFFFFF;">Updated on 08-09-2015</center></td></tr>
-<tr><td></td><td style="font-size:14px; text-align:center">Download flash player plugin for<br/>
-<a href="Plugins/install_flash_player_mozilla.exe"><u>Mozilla Firefox</u></a>,&nbsp;&nbsp;
-<a href="Plugins/flashplayer11-2_p2_install_win_32.exe"><u>IE-32_bit</u></a>,&nbsp;&nbsp;
-<a href="Plugins/flashplayer11-2_p2_install_win_64.exe"><u>IE-64_bit</u></a></td></tr></table>
+<img src="images/slide.gif" height="280" width="320">
+<iframe width="320" height="180" src="https://www.youtube.com/embed/qcHpUx_NIbE?rel=0&autoplay=1&loop=1&playlist=qcHpUx_NIbE" frameborder="0" allowfullscreen></iframe>
+</td></tr></table>
 <?php
  	//Opening file to get counter value
 	$fp = fopen ("counter.txt", "r");
@@ -127,38 +104,6 @@ name="mymoviename" align="" type="application/x-shockwave-flash" pluginspage="ht
 	$fp = fopen ("counter.txt", "w");
 	fwrite ($fp, $count_number);
 	fclose($fp);
-// IP Address Programming
-$time = @date('Y-m-d H:i:s');
-$Remote_IP = $_SERVER['REMOTE_ADDR'];
-//Database connection
-include("config.inc.php"); 
-global $db, $db_host, $db_user, $db_password;
-@$conn = mysql_connect($db_host,$db_user,$db_password);
-if (!$conn) {
-die("ERROR: " . mysql_error() . "\n");
-}
-mysql_select_db ($db);
-$dbip = mysql_query("select Counter,IP from ipaddress");
-while($IP=mysql_fetch_array($dbip))
-{
-if($Remote_IP===$IP['IP'])
-{
-if(!isset($_COOKIE["name"]))
-{
-$num=$IP['Counter']+1;
-}
-break;
-}
-else $num=1;
-}
-if($num>1)
-{
-mysql_query("UPDATE ipaddress SET Counter = '$num', Last_Visit = '$time' WHERE IP = '$Remote_IP'");
-}
-else
-{
-mysql_query("insert into ipaddress(Counter,IP,First_Visit,Last_Visit) values('1','$Remote_IP','$time','$time')");
-}	
 ?>
 </center></div>
 <div id="footer">
